@@ -81,7 +81,7 @@ public class AboutAssertions {
 		final Boolean __ = Boolean.FALSE;
 		final Boolean expected = Boolean.TRUE;
 		assertThat(__, new BaseMatcher<Boolean>(){
-			@Override
+			
 			public boolean matches(Object firstParamInAssertThat) {
 				return expected.equals(firstParamInAssertThat);
 			}
