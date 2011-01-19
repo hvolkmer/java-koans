@@ -21,6 +21,9 @@ repositories {
 }
 
 dependencies {
-    compile group: 'junit', name: 'junit', version: '4.8.2'
+    compile( 
+    	[group: 'junit', name: 'junit', version: '4.8.2'],
+    	[group: 'org.testng', name: 'testng', version: '5.14.6', classifier: 'jdk15'],
+    )
 }
 
