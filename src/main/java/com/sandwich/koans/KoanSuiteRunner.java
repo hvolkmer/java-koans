@@ -28,7 +28,9 @@ class KoanSuiteRunner {
 	}
 	
 	private Map<Object, List<Method>> getKoans() throws InstantiationException, IllegalAccessException {
-		List<Class<?>> koanSuites = AllKoans.getKoans();
+		// List<Class<?>> koanSuites = AllKoans.getKoans();
+		 List<Class<?>> koanSuites = new ArrayList<Class<?>>();
+
 		Map<Object, List<Method>> koans = new LinkedHashMap<Object, List<Method>>();
 		for(Class<?> koanSuite : koanSuites){
 			List<Method> koanMethods = new ArrayList<Method>();
