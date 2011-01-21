@@ -14,11 +14,13 @@ repositories {
 dependencies {
     compile( 
     	[group: 'junit', name: 'junit', version: '4.8.2'],
-    	[group: 'org.testng', name: 'testng', version: '5.14.6', classifier: 'jdk15'],
+    	[group: 'org.testng', name: 'testng', version: '5.14.6'],
     )
 }
 
 test {
 	useTestNG()
+	options.suites("src/test/resources/testng.xml") 
+	options.listeners << 'com.sandwich.koans.KoansListener'
+	
 }
-

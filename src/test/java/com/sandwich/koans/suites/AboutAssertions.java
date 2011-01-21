@@ -12,6 +12,7 @@ import static org.junit.Assert.assertThat;
 
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
+import org.testng.annotations.Test;
 
 import com.sandwich.koans.Koan;
 
@@ -25,7 +26,8 @@ import com.sandwich.koans.Koan;
  */
 public class AboutAssertions {
 
-	@Koan
+	@Test
+	@Koan("true is true")
 	public void assertBooleanTrue() {
 		assertTrue(__); // should be true really
 	}

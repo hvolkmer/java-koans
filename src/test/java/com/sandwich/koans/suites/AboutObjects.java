@@ -3,17 +3,21 @@ package com.sandwich.koans.suites;
 import static com.sandwich.koans.KoanSuite.__;
 import static org.junit.Assert.assertEquals;
 
+import org.testng.annotations.Test;
+
 import com.sandwich.koans.Koan;
 
 public class AboutObjects {
 
-	@Koan
+	@Test
+	@Koan("Creating an Object is Not Null")
 	public void objectEqualsNull(){
 		// does a new object instance equal the null keyword?
 		assertEquals(new Object().equals(null), __);
 	}
 	
-	@Koan
+	@Test
+	@Koan("A New Object Equals itself")
 	public void objectEqualsSelf(){
 		Object obj = new Object();
 		// does a new object equal itself?
@@ -21,6 +25,7 @@ public class AboutObjects {
 	}
 	
 	@Koan
+	@Test
 	public void objectIdentityEqualityIsTrueWhenReferringToSameObject(){
 		Object objectReference = new Object();
 		Object referenceToSameObject = objectReference;
@@ -29,6 +34,7 @@ public class AboutObjects {
 	}
 	
 	@Koan
+	@Test
 	public void subclassesOfObjectEqualsMethodIsLooserThanDoubleEqualsOperator(){
 		Integer integer0 = new Integer(0);
 		Integer integer1 = new Integer(0);
@@ -36,6 +42,7 @@ public class AboutObjects {
 	}
 	
 	@Koan
+	@Test
 	public void doubleEqualsOperatorEvalutesToTrueOnlyWithSameInstance(){
 		Integer integer0 = new Integer(0);
 		Integer integer1 = integer0; // <- assigning same instance to different reference
@@ -43,6 +50,7 @@ public class AboutObjects {
 	}
 	
 	@Koan
+	@Test
 	public void doubleEqualsOperatorEvalutesToFalseWithDifferentInstances(){
 		Integer integer0 = new Integer(0);
 		Integer integer1 = new Integer(0); // <- new keyword is generating new object instance
@@ -50,6 +58,7 @@ public class AboutObjects {
 	}
 	
 	@Koan
+	@Test
 	public void objectToString(){
 		Object object = new Object();
 		// TODO: Why is it best practice to ALWAYS override toString?
@@ -59,6 +68,7 @@ public class AboutObjects {
 	}
 	
 	@Koan
+	@Test
 	public void toStringConcatenates(){
 		final String string = "ha";
 		Object object = new Object(){
@@ -70,6 +80,7 @@ public class AboutObjects {
 	}
 
 	@Koan
+	@Test
 	public void toStringIsTestedForNullWhenInvokedImplicitly(){
 		String string = "string";
 		assertEquals(string+null, __);

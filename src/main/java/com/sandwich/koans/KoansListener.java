@@ -6,12 +6,8 @@ import org.testng.ITestContext;
 import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
-import org.testng.internal.Utils;
 
 public class KoansListener extends TestListenerAdapter {
-
-	private static final String CLASS_NAME = KoansListener.class.getName();
-	private static final int LOG_SEVERITY = 2;
 	
 	@Override
 	public void onStart(ITestContext testContext) {
@@ -93,7 +89,8 @@ public class KoansListener extends TestListenerAdapter {
 		sb.append(']');
 		sb.append(' ');
 		sb.append(numberPassing + "/" + totalKoans);
-		System.out.println(sb.toString());	}
+		log(sb.toString());	
+	}
 
 	private int totalNumberOfTests(ITestContext testContext) {
 		int totalKoans = testContext.getAllTestMethods().length + testContext.getSkippedTests().size();
@@ -118,7 +115,8 @@ public class KoansListener extends TestListenerAdapter {
 	}
 
 	private void log(String msg) {
-		Utils.log(CLASS_NAME, LOG_SEVERITY, msg);
+		// Utils.log(CLASS_NAME, LOG_SEVERITY, msg); 
+		System.out.println(msg);
 	}
 	
 	private void log(StringBuilder msg) {
