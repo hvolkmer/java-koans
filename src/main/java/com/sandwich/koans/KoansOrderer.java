@@ -62,11 +62,8 @@ public class KoansOrderer implements IMethodInterceptor {
 	public List<IMethodInstance> intercept(List<IMethodInstance> methods,
 			ITestContext context) {
 		
-		System.out.println("ORDERING KOANS!");
-		
 		Collections.sort(methods, KOANS_SORTER);
 		return methods;
 
 	}
-
 }

@@ -50,7 +50,7 @@ public class AboutAssertions {
 	 * TODO introduce instantiation, constructors
 	 */
 	@Koan
-	@Order(5)
+	@Order(4)
 	public void assertNotNullObject() {
 		assertNotNull(null);
 	}
@@ -59,7 +59,7 @@ public class AboutAssertions {
 	 * TODO explain arguments (mention they've been used up in prior koans
 	 */
 	@Koan
-	@Order(4)
+	@Order(5)
 	public void assertEqualsWithInt() {
 		assertEquals(1, __); // <- generally, when using an assertXXX methods,
 								// expectation is on the left and it is best
