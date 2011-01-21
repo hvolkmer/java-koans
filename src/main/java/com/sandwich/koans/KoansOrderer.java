@@ -14,56 +14,59 @@ import org.testng.xml.XmlTest;
 
 public class KoansOrderer implements IMethodInterceptor {
 
+	 public static final Comparator<IMethodInstance> KOANS_SORTER 
+	    = new Comparator<IMethodInstance>() {
+	    public int compare(IMethodInstance o1, IMethodInstance o2) {
+	      // If the two methods are in different <test>
+	      XmlTest test1 = o1.getMethod().getTestClass().getXmlTest();
+	      XmlTest test2 = o2.getMethod().getTestClass().getXmlTest();
+
+	      // If the two methods are not in the same <test>, we can't compare them
+	      if (! test1.getName().equals(test2.getName())) {
+	        return 0;
+	      }
+
+	      int result = 0;
+
+	      // If the two methods are in the same <class>, compare them by their Order
+	      // index, otherwise compare them with their class index.
+	      XmlClass class1 = o1.getMethod().getTestClass().getXmlClass();
+	      XmlClass class2 = o2.getMethod().getTestClass().getXmlClass();
+
+	      if (! class1.getName().equals(class2.getName())) {
+	        int index1 = class1.getIndex();
+	        int index2 = class2.getIndex();
+	        result = index1 - index2;
+	      }
+	      else {
+	    	  result = getMethodOrder(o1) - getMethodOrder(o2);
+	      }
+
+	      return result;
+	    }
+
+		private int getMethodOrder(IMethodInstance mi) {
+			int result = 10000;
+			
+			Method method = mi.getMethod().getMethod();
+			Order a1 = method.getAnnotation(Order.class);
+			if (a1 != null) {
+				result = a1.value();
+			} 
+			return result;
+		}
+
+	    
+	  };
+	
 	public List<IMethodInstance> intercept(List<IMethodInstance> methods,
 			ITestContext context) {
 		
-		final List<Class<?>> testClassesList = createTestClassOrder(context);
+		System.out.println("ORDERING KOANS!");
 		
-		
-		Comparator<IMethodInstance> comparator = new Comparator<IMethodInstance>() {
-			
-			private int getClassOrder(IMethodInstance mi) {
-				Method method = mi.getMethod().getMethod();
-				Class<?> cls = method.getDeclaringClass();
-				int classIdx = testClassesList.indexOf(cls);
-				System.out.println(cls.getName() + ' ' + classIdx);
-				return ( classIdx < 0) ? 10000 : classIdx; 
-			}
-			private int getMethodOrder(IMethodInstance mi) {
-				int result = 10000;
-				
-				Method method = mi.getMethod().getMethod();
-				Order a1 = method.getAnnotation(Order.class);
-				if (a1 != null) {
-					result = a1.value();
-				} 
-				return result;
-			}
-
-			public int compare(IMethodInstance m1, IMethodInstance m2) {
-				int retVal = getClassOrder(m1) - getClassOrder(m2);
-				if (retVal == 0) {
-					retVal = getMethodOrder(m1) - getMethodOrder(m2);
-				}
-				return retVal;
-			}
-
-		};
-
-		Collections.sort(methods, comparator);
+		Collections.sort(methods, KOANS_SORTER);
 		return methods;
 
 	}
 
-	public List<Class<?>> createTestClassOrder(ITestContext context) {
-		List<Class<?>> retVal = new ArrayList<Class<?>>();
-		
-		XmlTest xmlTest = context.getSuite().getXmlSuite().getTests().get(0);
-		// For Koans, there should only be one test, containing all Koans classes.
-
-		for (XmlClass xmlClass : xmlTest.getXmlClasses()) {
-			retVal.add(xmlClass.getClass());
-		}
-		return retVal;
-	}
 }
