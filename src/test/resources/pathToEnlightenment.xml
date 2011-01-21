@@ -4,6 +4,7 @@
 
   <listeners>
     <listener class-name="com.sandwich.koans.KoansListener" />
+    <listener class-name="com.sandwich.koans.KoansOrderer" />
   </listeners>
 
   <test name="Koans" preserve-order="true">

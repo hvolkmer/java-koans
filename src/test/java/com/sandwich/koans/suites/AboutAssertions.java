@@ -15,6 +15,7 @@ import org.hamcrest.Description;
 import org.testng.annotations.Test;
 
 import com.sandwich.koans.Koan;
+import com.sandwich.koans.Order;
 
 
 /**
@@ -24,20 +25,23 @@ import com.sandwich.koans.Koan;
  * @see the imports section above (it is generally considered bad
  * practice using static imports in production code). 					
  */
+@Test
 public class AboutAssertions {
 
-	@Test
 	@Koan("true is true")
+	@Order(1)
 	public void assertBooleanTrue() {
 		assertTrue(__); // should be true really
 	}
 
 	@Koan
+	@Order(2)
 	public void assertBooleanFalse() {
 		assertFalse(__); 
 	}
 	
 	@Koan
+	@Order(3)
 	public void assertNullObject(){
 		assertNull(__);
 	}
