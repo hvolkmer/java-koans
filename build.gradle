@@ -20,7 +20,7 @@ dependencies {
 
 test {
 	useTestNG()
-	options.suites("src/test/resources/testng.xml") 
-	options.listeners << 'com.sandwich.koans.KoansListener'
+	options.suites("src/test/resources/pathToEnlightenment.xml") 
+	options.listeners << 'com.sandwich.koans.KoansListener'	
 	
 }

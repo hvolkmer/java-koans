@@ -6,8 +6,11 @@ import static com.sandwich.koans.KoanSuite.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.testng.annotations.Test;
+
 import com.sandwich.koans.Koan;
 
+@Test
 public class AboutAutoboxing {
 
 	@Koan("Before Java 5, we had to convert primatives to add to collections")
